@@ -50,7 +50,10 @@
         .nav-links button { font-weight: 600; color: var(--text-dark); background: none; border: none; font-family: inherit; cursor: pointer; font-size: 0.95rem; transition: color 0.2s; }
         .nav-links button:hover { color: var(--primary-blue); }
         .nav-links button.active-link { color: var(--primary-blue); }
-        .nav-cta { display: flex; gap: 10px; }
+        .nav-cta { display: flex; gap: 10px; align-items: center; }
+
+        /* User Profile State (Hidden by default) */
+        .user-profile { font-weight: 600; color: var(--primary-blue); display: flex; align-items: center; gap: 8px; cursor: default; }
 
         /* --- SECTIONS --- */
         
@@ -69,7 +72,7 @@
         .logo-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; opacity: 0.6; filter: grayscale(100%); }
         .logo-placeholder { font-weight: 700; font-family: var(--font-heading); font-size: 1.2rem; color: #6B7280; }
 
-        /* Features / Platform (UPDATED SECTION) */
+        /* Features / Platform */
         .feature-section { padding: 100px 0; background: #fff; }
         .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .feature-content h2 { font-size: 2.5rem; margin-bottom: 25px; color: #1e3a8a; font-weight: 700; line-height: 1.3; }
@@ -77,33 +80,17 @@
         .feature-list { list-style: none; }
         .feature-list li { margin-bottom: 18px; display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 1.05rem; color: #374151; }
         
-        /* New SVG Check icon styles */
         .check-icon { 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            background: rgba(244, 180, 0, 0.15); /* Soft yellow background */
-            border-radius: 50%;
-            color: var(--secondary-yellow); 
+            display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;
+            background: rgba(244, 180, 0, 0.15); border-radius: 50%; color: var(--secondary-yellow); 
         }
         .check-icon svg { width: 16px; height: 16px; stroke-width: 3; }
         
-        /* Updated Laptop Mockup styles */
         .laptop-mockup {
-            background: #fff;
-            border-radius: 16px;
-            padding: 12px; /* Simulates the laptop bezel */
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); /* Deeper, softer shadow */
-            border: 1px solid #e5e7eb;
-            position: relative;
+            background: #fff; border-radius: 16px; padding: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); border: 1px solid #e5e7eb; position: relative;
         }
-        .laptop-screen {
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #f3f4f6;
-        }
+        .laptop-screen { border-radius: 8px; overflow: hidden; border: 1px solid #f3f4f6; }
 
         /* Impact Stats */
         .impact-section { background: #1e3a8a; color: white; padding: 60px 0; text-align: center; }
@@ -147,7 +134,7 @@
             .feature-grid, .detail-layout, .footer-grid, .impact-grid { grid-template-columns: 1fr; gap: 40px; }
             .hero-section h1 { font-size: 2rem; }
             .logo-row { gap: 20px; }
-            .feature-content { order: 2; } /* Put image on top on mobile */
+            .feature-content { order: 2; }
             .laptop-mockup { order: 1; }
         }
     </style>
@@ -166,7 +153,7 @@
                 <li><button id="nav-courses-btn" class="active-link">Professional Learning</button></li>
             </ul>
             <div class="nav-cta">
-                <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" id="login-btn" class="btn btn-outline">Log In</a>
                 <a href="#" class="btn btn-primary">Request Demo</a>
             </div>
         </div>
@@ -399,6 +386,7 @@
         const backBtn = document.getElementById('back-btn');
         const navCoursesBtn = document.getElementById('nav-courses-btn');
         const playerContainer = document.getElementById('main-player-container');
+        const loginBtn = document.getElementById('login-btn');
 
         // 3. RENDER GRID
         function renderGrid() {
@@ -467,6 +455,23 @@
 
         backBtn.addEventListener('click', showHome);
         navCoursesBtn.addEventListener('click', showHome);
+
+        // 6. LOGIN LOGIC (SIMULATION)
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // 1. Change text
+            loginBtn.innerHTML = 'Hi, Nikhil 👤';
+            
+            // 2. Change Styling to look like plain text/link instead of button
+            loginBtn.classList.remove('btn', 'btn-outline');
+            loginBtn.style.color = '#2F5BEA';
+            loginBtn.style.fontWeight = '700';
+            loginBtn.style.cursor = 'default';
+            loginBtn.style.textDecoration = 'none';
+
+            // 3. Smooth Scroll to Courses to simulate "Browsing"
+            document.getElementById('course-section').scrollIntoView({ behavior: 'smooth' });
+        });
 
         // Run
         renderGrid();

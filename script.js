@@ -117,7 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('detail-desc').textContent = course.desc;
         document.getElementById('detail-objective').textContent = course.objective;
         document.getElementById('detail-duration').textContent = course.duration;
-        document.getElementById('detail-image').src = course.image;
+        
+        // Image Logic: If image is empty or fails, use a color block or fallback
+        const imgElement = document.getElementById('detail-image');
+        if (course.image) {
+            imgElement.style.display = 'block';
+            imgElement.src = course.image;
+        } else {
+            // Hide image if missing so it doesn't look broken
+            imgElement.style.display = 'none';
+        }
 
         // Toggle Views
         gridView.classList.add('hidden');

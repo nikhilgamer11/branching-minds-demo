@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branching Minds | Professional Learning Demo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="brand-logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 0C8.954 0 0 8.954 0 20s8.954 20 20 20 20-8.954 20-20S31.046 0 20 0zm0 36c-8.837 0-16-7.163-16-16S11.163 4 20 4s16 7.163 16 16-7.163 16-16 16z" fill="#2F5BEA"/>
+                    <circle cx="20" cy="12" r="4" fill="#2F5BEA"/>
+                    <circle cx="12" cy="24" r="4" fill="#F4B400"/>
+                    <circle cx="28" cy="24" r="4" fill="#F4B400"/>
+                </svg>
+                <span class="brand-name">Branching Minds <span class="sub-brand">Learning</span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#">Platform</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><button id="nav-courses-btn" class="active-link">Courses</button></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" class="btn btn-primary">Request Demo</a>
+            </div>
+            
+            <div class="mobile-menu">☰</div>
+        </div>
+    </nav>
+
+    <main>
+        
+        <header class="hero-section">
+            <div class="container">
+                <h1>Professional Learning & MTSS Certification</h1>
+                <p>Deepen your expertise with our curated curriculum. Powered by industry-leading research.</p>
+            </div>
+        </header>
+
+        <section id="view-course-grid" class="container section-padding">
+            <div class="section-header">
+                <h2>Available Courses</h2>
+                <p>Browse our catalog of self-paced learning modules.</p>
+            </div>
+            <div id="course-grid" class="grid-container">
+                </div>
+        </section>
+
+        <section id="view-course-detail" class="container section-padding hidden">
+            <button id="back-btn" class="btn-text">← Back to Courses</button>
+            
+            <div class="detail-layout">
+                <div class="detail-content">
+                    <span class="badge" id="detail-category">Category</span>
+                    <h1 id="detail-title">Course Title</h1>
+                    <div class="meta-row">
+                        <span>⏱ <span id="detail-duration">Duration</span></span>
+                        <span>🎓 Self-Paced</span>
+                    </div>
+                    
+                    <div class="description-block">
+                        <h3>About this Course</h3>
+                        <p id="detail-desc">Description goes here.</p>
+                        
+                        <h3>Learning Objectives</h3>
+                        <p id="detail-objective">Objectives go here.</p>
+                    </div>
+
+                    <div class="lms-container">
+                        <div class="lms-placeholder">
+                            <h3>Start Learning</h3>
+                            <p>This area represents the LearnUpon LMS Player Embed.</p>
+                            <button class="btn btn-primary btn-large">Launch Course in LearnUpon</button>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="detail-sidebar">
+                    <img id="detail-image" src="" alt="Course Cover">
+                    <div class="sidebar-box">
+                        <h4>Instructor</h4>
+                        <div class="instructor-row">
+                            <div class="avatar"></div>
+                            <div>
+                                <strong>Dr. Sarah Miller</strong>
+                                <small>MTSS Specialist</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Branching Minds Demo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

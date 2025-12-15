@@ -1,152 +1,238 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* --- Variables & Reset --- */
+:root {
+    --primary-blue: #2F5BEA; /* Branching Minds Blue */
+    --primary-hover: #1e40af;
+    --secondary-yellow: #F4B400;
+    --text-dark: #111827;
+    --text-grey: #6B7280;
+    --bg-light: #F9FAFB;
+    --white: #ffffff;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-dark); margin-bottom: 0.5em; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+.hidden { display: none !important; }
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 50px; /* Brand pill shape */
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border: 2px solid transparent;
+}
+
+.btn-primary { background-color: var(--primary-blue); color: var(--white); }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-outline { border-color: var(--primary-blue); color: var(--primary-blue); background: transparent; margin-right: 10px; }
+.btn-outline:hover { background-color: #eff6ff; }
+
+.btn-text { background: none; border: none; color: var(--text-grey); font-weight: 600; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; }
+.btn-text:hover { color: var(--primary-blue); }
+
+.btn-large { width: 100%; text-align: center; padding: 15px; font-size: 1.1rem; }
+
+/* --- Navbar --- */
+.navbar {
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Height is now controlled inline in HTML to accommodate logo */
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-family: var(--font-heading); font-size: 1.2rem; }
+.brand-name { color: var(--text-dark); }
+.sub-brand { color: var(--text-grey); font-weight: 400; margin-left: 5px; }
+
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a, .nav-links button { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); background: none; border: none; font-family: inherit; cursor: pointer; }
+.nav-links button.active-link { color: var(--primary-blue); }
+.nav-links a:hover, .nav-links button:hover { color: var(--primary-blue); }
+
+.nav-cta { display: flex; align-items: center; }
+.mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; }
+
+/* --- Hero --- */
+.hero-section {
+    background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 100%);
+    padding: 80px 0;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-section h1 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 15px; }
+.hero-section p { font-size: 1.1rem; color: var(--text-grey); max-width: 600px; margin: 0 auto; }
+
+/* --- Grid View --- */
+.section-padding { padding: 60px 20px; }
+.section-header { text-align: center; margin-bottom: 50px; }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.course-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-blue);
+}
+
+.card-img {
+    height: 160px;
+    background-color: #ddd;
+    overflow: hidden;
+}
+
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+.card-category { font-size: 0.75rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase; margin-bottom: 8px; display: block; }
+.card-title { font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; }
+.card-desc { font-size: 0.9rem; color: var(--text-grey); margin-bottom: 20px; flex-grow: 1; }
+.card-footer { border-top: 1px solid #f3f4f6; padding-top: 15px; font-size: 0.85rem; color: var(--text-grey); display: flex; justify-content: space-between; }
+
+/* --- Detail View --- */
+.detail-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+.badge { background: #dbeafe; color: var(--primary-blue); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+#detail-title { font-size: 2.5rem; margin-top: 15px; margin-bottom: 15px; }
+.meta-row { display: flex; gap: 20px; color: var(--text-grey); margin-bottom: 30px; }
+
+.description-block h3 { margin-top: 30px; font-size: 1.25rem; }
+.description-block p { color: var(--text-grey); margin-bottom: 15px; }
+
+.lms-container { margin-top: 40px; border-top: 2px solid #e5e7eb; padding-top: 30px; }
+
+.detail-sidebar img { width: 100%; border-radius: var(--radius); margin-bottom: 20px; }
+.sidebar-box { background: var(--white); padding: 20px; border-radius: var(--radius); border: 1px solid #e5e7eb; }
+.instructor-row { display: flex; gap: 15px; align-items: center; margin-top: 10px; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #cbd5e1; }
+
+/* --- Mock Player UI (LearnUpon Anywhere Simulation) --- */
+.mock-player {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.player-header {
+    background: #f3f4f6;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-header h4 { margin: 0; font-size: 0.95rem; }
+.progress-badge { background: #dbeafe; color: #1e40af; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: 700; }
+
+.player-body {
+    display: flex;
+    flex-wrap: wrap; /* responsive */
+    min-height: 400px;
+}
+
+.video-stage {
+    flex: 2;
+    background-color: #000;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.play-button-overlay {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+}
+
+.video-stage:hover .play-button-overlay { background: #2F5BEA; transform: scale(1.1); }
+.play-icon { font-size: 24px; color: #fff; margin-left: 4px; }
+
+.course-syllabus {
+    flex: 1;
+    background: #fff;
+    border-left: 1px solid #e5e7eb;
+    min-width: 250px;
+}
+
+.syllabus-header { padding: 15px; font-weight: 700; border-bottom: 1px solid #eee; background: #fafafa; }
+.module-list { list-style: none; }
+.module-item { padding: 15px; border-bottom: 1px solid #f3f4f6; cursor: pointer; display: flex; gap: 10px; font-size: 0.9rem; color: #4b5563; }
+.module-item:hover { background-color: #f9fafb; color: #2F5BEA; }
+.module-item.active { background-color: #eff6ff; border-left: 3px solid #2F5BEA; color: #1e3a8a; font-weight: 600; }
+.status-icon { color: #9ca3af; } 
+.module-item.active .status-icon { color: #2F5BEA; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .mobile-menu { display: block; }
+    .detail-layout { grid-template-columns: 1fr; }
+    .hero-section h1 { font-size: 1.8rem; }
     
-    // 1. Mock Data: Simulating LearnUpon API response
-    const courses = [
-        {
-            id: 1,
-            title: "MTSS Foundations: Tier 1 Best Practices",
-            category: "Core Methodology",
-            desc: "Learn the essential framework of Multi-Tiered System of Supports and how to apply Tier 1 interventions effectively.",
-            objective: "Participants will understand the core components of MTSS, identify evidence-based Tier 1 interventions, and learn how to analyze student data for screening.",
-            duration: "2h 30m",
-            image: "https://placehold.co/600x400/2F5BEA/ffffff?text=MTSS+Foundations"
-        },
-        {
-            id: 2,
-            title: "Data-Based Individualization (DBI)",
-            category: "Advanced",
-            desc: "A deep dive into using data to individualize instruction for students with intensive needs.",
-            objective: "Master the 5 steps of DBI, learn to set realistic goals, and adjust instruction based on progress monitoring data.",
-            duration: "3h 15m",
-            image: "https://placehold.co/600x400/F4B400/ffffff?text=DBI+Deep+Dive"
-        },
-        {
-            id: 3,
-            title: "Social-Emotional Learning in the Classroom",
-            category: "Behavior",
-            desc: "Strategies for integrating SEL into daily academic instruction to improve student outcomes.",
-            objective: "Define the 5 core SEL competencies and implement 3 classroom routines that support emotional regulation.",
-            duration: "1h 45m",
-            image: "https://placehold.co/600x400/111827/ffffff?text=SEL+Strategies"
-        },
-        {
-            id: 4,
-            title: "Universal Design for Learning (UDL)",
-            category: "Instruction",
-            desc: "Create inclusive learning environments that cater to the variability of all learners.",
-            objective: "Apply UDL principles to lesson planning and assessment design.",
-            duration: "4h 00m",
-            image: "https://placehold.co/600x400/2F5BEA/ffffff?text=UDL+Principles"
-        },
-        {
-            id: 5,
-            title: "Leadership in MTSS Implementation",
-            category: "Leadership",
-            desc: "For administrators: How to lead cultural change and structural implementation of MTSS.",
-            objective: "Develop an implementation plan, allocate resources effectively, and build consensus among staff.",
-            duration: "5h 00m",
-            image: "https://placehold.co/600x400/F4B400/ffffff?text=Leadership"
-        },
-        {
-            id: 6,
-            title: "Progress Monitoring Tools 101",
-            category: "Assessment",
-            desc: "A technical guide to selecting and using the right tools for tracking student growth.",
-            objective: "Compare different CBM tools and interpret growth rates correctly.",
-            duration: "2h 00m",
-            image: "https://placehold.co/600x400/111827/ffffff?text=Progress+Monitoring"
-        },
-        {
-            id: 7,
-            title: "Equitable Practices in Special Education",
-            category: "Equity",
-            desc: "Identifying and addressing disproportionality in special education referrals.",
-            objective: "Analyze school data for bias and implement culturally responsive teaching practices.",
-            duration: "3h 30m",
-            image: "https://placehold.co/600x400/2F5BEA/ffffff?text=Equity+Focus"
-        },
-        {
-            id: 8,
-            title: "Family Engagement Strategies",
-            category: "Community",
-            desc: "Building strong partnerships with families to support student learning.",
-            objective: "Create a communication plan that engages families in the MTSS process.",
-            duration: "1h 30m",
-            image: "https://placehold.co/600x400/F4B400/ffffff?text=Family+Engagement"
-        }
-    ];
-
-    // 2. DOM Elements
-    const gridContainer = document.getElementById('course-grid');
-    const gridView = document.getElementById('view-course-grid');
-    const detailView = document.getElementById('view-course-detail');
-    const backBtn = document.getElementById('back-btn');
-    const navCoursesBtn = document.getElementById('nav-courses-btn');
-
-    // 3. Render Grid Function
-    function renderGrid() {
-        gridContainer.innerHTML = '';
-        courses.forEach(course => {
-            const card = document.createElement('div');
-            card.className = 'course-card';
-            card.onclick = () => showDetail(course); // Click handler
-
-            card.innerHTML = `
-                <div class="card-img">
-                    <img src="${course.image}" alt="${course.title}">
-                </div>
-                <div class="card-body">
-                    <span class="card-category">${course.category}</span>
-                    <h3 class="card-title">${course.title}</h3>
-                    <p class="card-desc">${course.desc}</p>
-                    <div class="card-footer">
-                        <span>${course.duration}</span>
-                        <span>Start Learning &rarr;</span>
-                    </div>
-                </div>
-            `;
-            gridContainer.appendChild(card);
-        });
-    }
-
-    // 4. Show Detail Function
-    function showDetail(course) {
-        // Populate Detail Data
-        document.getElementById('detail-title').textContent = course.title;
-        document.getElementById('detail-category').textContent = course.category;
-        document.getElementById('detail-desc').textContent = course.desc;
-        document.getElementById('detail-objective').textContent = course.objective;
-        document.getElementById('detail-duration').textContent = course.duration;
-        
-        // Image Logic: If image is empty or fails, use a color block or fallback
-        const imgElement = document.getElementById('detail-image');
-        if (course.image) {
-            imgElement.style.display = 'block';
-            imgElement.src = course.image;
-        } else {
-            // Hide image if missing so it doesn't look broken
-            imgElement.style.display = 'none';
-        }
-
-        // Toggle Views
-        gridView.classList.add('hidden');
-        detailView.classList.remove('hidden');
-        
-        // Scroll to top
-        window.scrollTo(0, 0);
-    }
-
-    // 5. Back to Grid Function
-    function showGrid() {
-        detailView.classList.add('hidden');
-        gridView.classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
-
-    // 6. Event Listeners
-    backBtn.addEventListener('click', showGrid);
-    navCoursesBtn.addEventListener('click', showGrid); // Navbar link resets view
-
-    // Initialize
-    renderGrid();
-});
+    .player-body { flex-direction: column; }
+    .course-syllabus { border-left: none; border-top: 1px solid #e5e7eb; }
+}

@@ -163,3 +163,78 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     .detail-layout { grid-template-columns: 1fr; }
     .hero-section h1 { font-size: 1.8rem; }
 }
+/* --- Mock Player UI (LearnUpon Anywhere Simulation) --- */
+.mock-player {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.player-header {
+    background: #f3f4f6;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-header h4 { margin: 0; font-size: 0.95rem; }
+.progress-badge { background: #dbeafe; color: #1e40af; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: 700; }
+
+.player-body {
+    display: flex;
+    flex-wrap: wrap; /* responsive */
+    min-height: 400px;
+}
+
+.video-stage {
+    flex: 2;
+    background-color: #000;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.play-button-overlay {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+}
+
+.video-stage:hover .play-button-overlay { background: #2F5BEA; transform: scale(1.1); }
+.play-icon { font-size: 24px; color: #fff; margin-left: 4px; }
+
+.course-syllabus {
+    flex: 1;
+    background: #fff;
+    border-left: 1px solid #e5e7eb;
+    min-width: 250px;
+}
+
+.syllabus-header { padding: 15px; font-weight: 700; border-bottom: 1px solid #eee; background: #fafafa; }
+.module-list { list-style: none; }
+.module-item { padding: 15px; border-bottom: 1px solid #f3f4f6; cursor: pointer; display: flex; gap: 10px; font-size: 0.9rem; color: #4b5563; }
+.module-item:hover { background-color: #f9fafb; color: #2F5BEA; }
+.module-item.active { background-color: #eff6ff; border-left: 3px solid #2F5BEA; color: #1e3a8a; font-weight: 600; }
+.status-icon { color: #9ca3af; } 
+.module-item.active .status-icon { color: #2F5BEA; }
+
+@media (max-width: 768px) {
+    .player-body { flex-direction: column; }
+    .course-syllabus { border-left: none; border-top: 1px solid #e5e7eb; }
+}

@@ -21,8 +21,6 @@
             --white: #ffffff;
             --font-heading: 'Poppins', sans-serif;
             --font-body: 'Open Sans', sans-serif;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --radius: 8px;
         }
 
@@ -36,133 +34,70 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-dark); margin-bottom: 0.5em; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
         .hidden { display: none !important; }
 
-        /* Buttons */
-        .btn { display: inline-block; padding: 10px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 0.95rem; border: 2px solid transparent; }
-        .btn-primary { background-color: var(--primary-blue); color: var(--white); }
-        .btn-primary:hover { background-color: var(--primary-hover); }
-        .btn-outline { border-color: var(--primary-blue); color: var(--primary-blue); background: transparent; margin-right: 10px; }
-        .btn-outline:hover { background-color: #eff6ff; }
-        .btn-text { background: none; border: none; color: var(--text-grey); font-weight: 600; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; }
-        .btn-text:hover { color: var(--primary-blue); }
-
-        /* Navbar */
-        .navbar { background: var(--white); box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; }
+        /* Navbar & Branding */
+        .navbar { background: var(--white); box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .brand-logo { display: flex; align-items: center; }
         .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a, .nav-links button { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); background: none; border: none; font-family: inherit; cursor: pointer; }
+        .nav-links button { font-weight: 600; color: var(--text-dark); background: none; border: none; font-family: inherit; cursor: pointer; }
         .nav-links button.active-link { color: var(--primary-blue); }
-        .nav-links a:hover, .nav-links button:hover { color: var(--primary-blue); }
-        .nav-cta { display: flex; align-items: center; }
-        .mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; }
+        .nav-cta { display: flex; gap: 10px; }
+        
+        .btn { padding: 10px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; border: 2px solid transparent; text-decoration: none;}
+        .btn-primary { background: var(--primary-blue); color: var(--white); }
+        .btn-outline { border-color: var(--primary-blue); color: var(--primary-blue); background: transparent; }
+        .btn-text { background: none; border: none; color: var(--text-grey); font-weight: 600; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; }
 
         /* Hero */
         .hero-section { background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 100%); padding: 80px 0; text-align: center; border-bottom: 1px solid #e5e7eb; }
-        .hero-section h1 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 15px; }
-        .hero-section p { font-size: 1.1rem; color: var(--text-grey); max-width: 600px; margin: 0 auto; }
+        .hero-section h1 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 15px; font-family: var(--font-heading); }
 
-        /* Grid View */
-        .section-padding { padding: 60px 20px; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; }
-        .course-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #e5e7eb; display: flex; flex-direction: column; }
-        .course-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--primary-blue); }
-        .card-img { height: 160px; background-color: #ddd; overflow: hidden; }
+        /* Grid */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; }
+        .course-card { background: var(--white); border-radius: var(--radius); box-shadow: 0 1px 2px rgba(0,0,0,0.05); overflow: hidden; cursor: pointer; border: 1px solid #e5e7eb; transition: transform 0.2s; }
+        .course-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); }
+        .card-img { height: 160px; background: #ddd; overflow: hidden; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .card-category { font-size: 0.75rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase; margin-bottom: 8px; display: block; }
-        .card-title { font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; }
-        .card-desc { font-size: 0.9rem; color: var(--text-grey); margin-bottom: 20px; flex-grow: 1; }
-        .card-footer { border-top: 1px solid #f3f4f6; padding-top: 15px; font-size: 0.85rem; color: var(--text-grey); display: flex; justify-content: space-between; }
+        .card-body { padding: 20px; }
+        .card-category { font-size: 0.75rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        .card-title { font-size: 1.1rem; margin-bottom: 10px; font-family: var(--font-heading); font-weight: 600; }
+        .card-footer { border-top: 1px solid #f3f4f6; padding-top: 15px; margin-top: 15px; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-grey); }
 
-        /* Detail View */
-        .detail-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-        .badge { background: #dbeafe; color: var(--primary-blue); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
-        #detail-title { font-size: 2.5rem; margin-top: 15px; margin-bottom: 15px; }
+        /* Detail View & Player */
+        .detail-layout { display: grid; grid-template-columns: 3fr 1fr; gap: 40px; margin-top: 20px; }
+        #detail-title { font-size: 2.5rem; margin: 10px 0; font-family: var(--font-heading); }
         .meta-row { display: flex; gap: 20px; color: var(--text-grey); margin-bottom: 30px; }
-        .description-block h3 { margin-top: 30px; font-size: 1.25rem; }
-        .description-block p { color: var(--text-grey); margin-bottom: 15px; }
 
-        /* *** MOCK PLAYER UI STYLES *** */
-        .lms-container { margin-top: 40px; border-top: 2px solid #e5e7eb; padding-top: 30px; }
+        /* THE PLAYER CONTAINER */
+        #main-player-container {
+            width: 100%;
+            min-height: 600px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            position: relative;
+            margin-top: 30px;
+        }
 
-        .mock-player {
+        iframe[name="luEmbedIframe"] {
+            width: 100%;
+            height: 800px; /* Adjust height as needed */
+            border: none;
+            border-radius: var(--radius);
+            display: block;
+        }
+
+        /* Mock Placeholder if iframe doesn't load real content */
+        .player-placeholder {
             display: flex;
             flex-direction: column;
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-top: 10px;
-        }
-
-        .player-header {
-            background: #f3f4f6;
-            padding: 15px 20px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .player-header h4 { margin: 0; font-size: 0.95rem; }
-        .progress-badge { background: #dbeafe; color: #1e40af; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; font-weight: 700; }
-
-        .player-body { display: flex; flex-wrap: wrap; min-height: 400px; }
-
-        .video-stage {
-            flex: 2;
-            background-color: #111; /* Dark video background */
-            min-width: 300px;
-            display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .play-button-overlay {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(4px);
-            transition: 0.3s;
-        }
-        .video-stage:hover .play-button-overlay { background: #2F5BEA; border-color: #2F5BEA; transform: scale(1.1); }
-        .play-icon { font-size: 28px; color: #fff; margin-left: 5px; }
-
-        .course-syllabus { flex: 1; background: #fff; border-left: 1px solid #e5e7eb; min-width: 250px; }
-        .syllabus-header { padding: 15px; font-weight: 700; border-bottom: 1px solid #eee; background: #fafafa; }
-        .module-list { list-style: none; }
-        .module-item { padding: 15px; border-bottom: 1px solid #f3f4f6; cursor: pointer; display: flex; gap: 10px; font-size: 0.9rem; color: #4b5563; }
-        .module-item:hover { background-color: #f9fafb; color: #2F5BEA; }
-        .module-item.active { background-color: #eff6ff; border-left: 3px solid #2F5BEA; color: #1e3a8a; font-weight: 600; }
-        .status-icon { color: #9ca3af; } 
-        .module-item.active .status-icon { color: #2F5BEA; }
-
-        /* Sidebar & Responsive */
-        .detail-sidebar img { width: 100%; border-radius: var(--radius); margin-bottom: 20px; }
-        .sidebar-box { background: var(--white); padding: 20px; border-radius: var(--radius); border: 1px solid #e5e7eb; }
-        .instructor-row { display: flex; gap: 15px; align-items: center; margin-top: 10px; }
-        .avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #cbd5e1; }
-
-        @media (max-width: 768px) {
-            .nav-links, .nav-cta { display: none; }
-            .mobile-menu { display: block; }
-            .detail-layout { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 1.8rem; }
-            .player-body { flex-direction: column; }
-            .course-syllabus { border-left: none; border-top: 1px solid #e5e7eb; }
+            height: 100%;
+            padding: 40px;
+            text-align: center;
+            color: #64748b;
         }
     </style>
 </head>
@@ -170,32 +105,22 @@
 
     <nav class="navbar" style="height: auto; min-height: 80px; padding: 15px 0;">
         <div class="container nav-container">
-            <div class="brand-logo">
-                <a href="#">
-                    <img src="branching%20minds%20logo.png" 
-                         alt="Branching Minds Logo" 
-                         style="height: 110px; width: auto;">
-                </a>
-            </div>
-            
+            <a href="#" class="brand-logo">
+                <img src="branching%20minds%20logo.png" alt="Branching Minds" style="height: 110px; width: auto;">
+            </a>
             <ul class="nav-links">
-                <li><a href="#">Platform</a></li>
-                <li><a href="#">Solutions</a></li>
-                <li><a href="#">Resources</a></li>
+                <li><button>Platform</button></li>
+                <li><button>Solutions</button></li>
                 <li><button id="nav-courses-btn" class="active-link">Courses</button></li>
             </ul>
-
             <div class="nav-cta">
                 <a href="#" class="btn btn-outline">Log In</a>
                 <a href="#" class="btn btn-primary">Request Demo</a>
             </div>
-            
-            <div class="mobile-menu">☰</div>
         </div>
     </nav>
 
     <main>
-        
         <header class="hero-section">
             <div class="container">
                 <h1>Professional Learning & MTSS Certification</h1>
@@ -203,195 +128,103 @@
             </div>
         </header>
 
-        <section id="view-course-grid" class="container section-padding">
-            <div class="section-header">
-                <h2>Available Courses</h2>
-                <p>Browse our catalog of self-paced learning modules.</p>
-            </div>
-            <div id="course-grid" class="grid-container">
-                </div>
+        <section id="view-course-grid" class="container" style="padding: 60px 20px;">
+            <h2 style="text-align:center; font-family: var(--font-heading);">Available Courses</h2>
+            <div id="course-grid" class="grid-container"></div>
         </section>
 
-        <section id="view-course-detail" class="container section-padding hidden">
+        <section id="view-course-detail" class="container hidden" style="padding: 60px 20px;">
             <button id="back-btn" class="btn-text">← Back to Courses</button>
             
             <div class="detail-layout">
                 <div class="detail-content">
-                    <span class="badge" id="detail-category">Category</span>
+                    <span class="card-category" id="detail-category">Category</span>
                     <h1 id="detail-title">Course Title</h1>
                     <div class="meta-row">
-                        <span>⏱ <span id="detail-duration">Duration</span></span>
+                        <span id="detail-duration">Duration</span>
                         <span>🎓 Self-Paced</span>
                     </div>
-                    
-                    <div class="description-block">
+
+                    <div id="description-area">
                         <h3>About this Course</h3>
-                        <p id="detail-desc">Description goes here.</p>
-                        
-                        <h3>Learning Objectives</h3>
-                        <p id="detail-objective">Objectives go here.</p>
+                        <p id="detail-desc">Description...</p>
                     </div>
 
-                    <div class="lms-container">
-                        <h3 style="margin-bottom: 15px;">Course Content</h3>
-                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
-                            <strong style="color: #2F5BEA;">LearnUpon Anywhere:</strong> The course player is embedded directly below. No pop-ups required.
+                    <div style="margin-top: 40px;">
+                        <h3>Course Player</h3>
+                        <p style="font-size: 0.9rem; color: #666;">
+                            Powered by <strong>LearnUpon Anywhere</strong>. (Note: In this demo, the specific course content cannot load without a valid SQSSO token, so a simulation is shown.)
                         </p>
                         
-                        <div class="mock-player">
-                            <div class="player-header">
-                                <h4>Module 1: Introduction to MTSS (Player V2)</h4>
-                                <span class="progress-badge">0% Complete</span>
-                            </div>
-                            <div class="player-body">
-                                <div class="video-stage">
-                                    <div class="play-button-overlay">
-                                        <span class="play-icon">▶</span>
-                                    </div>
-                                    <span style="position:absolute; bottom: 20px; left: 20px; color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 4px; font-size: 12px;">Video: 12:04</span>
-                                </div>
-                                
-                                <div class="course-syllabus">
-                                    <div class="syllabus-header">Course Modules</div>
-                                    <ul class="module-list">
-                                        <li class="module-item active">
-                                            <span class="status-icon">▶</span>
-                                            <span>1. Introduction & Overview</span>
-                                        </li>
-                                        <li class="module-item">
-                                            <span class="status-icon">🔒</span>
-                                            <span>2. Tier 1 Interventions</span>
-                                        </li>
-                                        <li class="module-item">
-                                            <span class="status-icon">🔒</span>
-                                            <span>3. Data Analysis</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <div id="main-player-container">
+                            <div class="player-placeholder">
+                                <h3>Select a course to load the player</h3>
                             </div>
                         </div>
+
+                        <div id="luEmbedFormDiv" style="display: none;"></div>
                     </div>
-                    </div>
+                </div>
 
                 <div class="detail-sidebar">
-                    <img id="detail-image" src="" alt="Course Cover" style="display: none;">
-                    
-                    <div class="sidebar-box">
+                    <img id="detail-image" src="" alt="Course Cover" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
+                    <div style="background: #fff; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
                         <h4>Instructor</h4>
-                        <div class="instructor-row">
-                            <div class="avatar"></div>
-                            <div>
-                                <strong>Dr. Sarah Miller</strong>
-                                <small>MTSS Specialist</small>
-                            </div>
-                        </div>
+                        <div><strong>Dr. Sarah Miller</strong><br><small>MTSS Specialist</small></div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Branching Minds Demo. All rights reserved.</p>
-        </div>
-    </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         
-        // MOCK DATA
+        // 1. DATA: Simulating the GET /courses response
         const courses = [
             {
-                id: 1,
+                id: 101, // Actual Enrollment ID mapping
                 title: "MTSS Foundations: Tier 1 Best Practices",
                 category: "Core Methodology",
                 desc: "Learn the essential framework of Multi-Tiered System of Supports and how to apply Tier 1 interventions effectively.",
-                objective: "Participants will understand the core components of MTSS, identify evidence-based Tier 1 interventions, and learn how to analyze student data for screening.",
                 duration: "2h 30m",
                 image: "https://placehold.co/600x400/2F5BEA/ffffff?text=MTSS+Foundations"
             },
             {
-                id: 2,
+                id: 102,
                 title: "Data-Based Individualization (DBI)",
                 category: "Advanced",
                 desc: "A deep dive into using data to individualize instruction for students with intensive needs.",
-                objective: "Master the 5 steps of DBI, learn to set realistic goals, and adjust instruction based on progress monitoring data.",
                 duration: "3h 15m",
                 image: "https://placehold.co/600x400/F4B400/ffffff?text=DBI+Deep+Dive"
             },
             {
-                id: 3,
+                id: 103,
                 title: "Social-Emotional Learning in the Classroom",
                 category: "Behavior",
                 desc: "Strategies for integrating SEL into daily academic instruction to improve student outcomes.",
-                objective: "Define the 5 core SEL competencies and implement 3 classroom routines that support emotional regulation.",
                 duration: "1h 45m",
                 image: "https://placehold.co/600x400/111827/ffffff?text=SEL+Strategies"
-            },
-            {
-                id: 4,
-                title: "Universal Design for Learning (UDL)",
-                category: "Instruction",
-                desc: "Create inclusive learning environments that cater to the variability of all learners.",
-                objective: "Apply UDL principles to lesson planning and assessment design.",
-                duration: "4h 00m",
-                image: "https://placehold.co/600x400/2F5BEA/ffffff?text=UDL+Principles"
-            },
-            {
-                id: 5,
-                title: "Leadership in MTSS Implementation",
-                category: "Leadership",
-                desc: "For administrators: How to lead cultural change and structural implementation of MTSS.",
-                objective: "Develop an implementation plan, allocate resources effectively, and build consensus among staff.",
-                duration: "5h 00m",
-                image: "https://placehold.co/600x400/F4B400/ffffff?text=Leadership"
-            },
-            {
-                id: 6,
-                title: "Progress Monitoring Tools 101",
-                category: "Assessment",
-                desc: "A technical guide to selecting and using the right tools for tracking student growth.",
-                objective: "Compare different CBM tools and interpret growth rates correctly.",
-                duration: "2h 00m",
-                image: "https://placehold.co/600x400/111827/ffffff?text=Progress+Monitoring"
-            },
-            {
-                id: 7,
-                title: "Equitable Practices in Special Education",
-                category: "Equity",
-                desc: "Identifying and addressing disproportionality in special education referrals.",
-                objective: "Analyze school data for bias and implement culturally responsive teaching practices.",
-                duration: "3h 30m",
-                image: "https://placehold.co/600x400/2F5BEA/ffffff?text=Equity+Focus"
-            },
-            {
-                id: 8,
-                title: "Family Engagement Strategies",
-                category: "Community",
-                desc: "Building strong partnerships with families to support student learning.",
-                objective: "Create a communication plan that engages families in the MTSS process.",
-                duration: "1h 30m",
-                image: "https://placehold.co/600x400/F4B400/ffffff?text=Family+Engagement"
             }
         ];
 
-        // ELEMENTS
+        // 2. DOM ELEMENTS
         const gridContainer = document.getElementById('course-grid');
         const gridView = document.getElementById('view-course-grid');
         const detailView = document.getElementById('view-course-detail');
         const backBtn = document.getElementById('back-btn');
         const navCoursesBtn = document.getElementById('nav-courses-btn');
+        const playerContainer = document.getElementById('main-player-container');
+        const formDiv = document.getElementById('luEmbedFormDiv');
 
-        // RENDER GRID
+        // 3. RENDER GRID
         function renderGrid() {
-            if(!gridContainer) return; // Guard clause
             gridContainer.innerHTML = '';
             courses.forEach(course => {
                 const card = document.createElement('div');
                 card.className = 'course-card';
-                card.onclick = () => showDetail(course); 
+                // Trigger logic when card is clicked
+                card.onclick = () => launchCourse(course); 
 
                 card.innerHTML = `
                     <div class="card-img">
@@ -400,50 +233,129 @@
                     <div class="card-body">
                         <span class="card-category">${course.category}</span>
                         <h3 class="card-title">${course.title}</h3>
-                        <p class="card-desc">${course.desc}</p>
-                        <div class="card-footer">
+                        <p class="card-footer">
                             <span>${course.duration}</span>
-                            <span>Start Learning &rarr;</span>
-                        </div>
+                            <span style="color: var(--primary-blue); font-weight: 700;">Start Learning &rarr;</span>
+                        </p>
                     </div>
                 `;
                 gridContainer.appendChild(card);
             });
         }
 
-        // SHOW DETAIL
-        function showDetail(course) {
+        // 4. LAUNCH COURSE (The LearnUpon Anywhere Logic)
+        function launchCourse(course) {
+            // Update UI Text
             document.getElementById('detail-title').textContent = course.title;
             document.getElementById('detail-category').textContent = course.category;
             document.getElementById('detail-desc').textContent = course.desc;
-            document.getElementById('detail-objective').textContent = course.objective;
             document.getElementById('detail-duration').textContent = course.duration;
-            
-            // Image Logic
-            const imgElement = document.getElementById('detail-image');
-            if (course.image) {
-                imgElement.style.display = 'block';
-                imgElement.src = course.image;
-            } else {
-                imgElement.style.display = 'none';
-            }
+            document.getElementById('detail-image').src = course.image;
 
+            // Switch Views
             gridView.classList.add('hidden');
             detailView.classList.remove('hidden');
             window.scrollTo(0, 0);
+
+            // *** BUILD THE IFRAME ***
+            // This function implements the logic from "Code example for building the iFrame"
+            buildLearnUponIframe(course.id);
         }
 
-        // BACK FUNCTION
+        function buildLearnUponIframe(enrollmentId) {
+            // A. Clear previous content
+            playerContainer.innerHTML = '';
+            formDiv.innerHTML = '';
+
+            // B. Create the Form (Method: POST)
+            // As per docs: "we recommend using a HTML Form with a POST request for the iFrame source"
+            var form = document.createElement('form');
+            form.setAttribute('method', 'post');
+            // NOTE: In a real app, this URL is generated by your backend to include the valid TS and SSOToken
+            // We use a placeholder action here to demonstrate the structure.
+            form.setAttribute('action', 'https://yourportal.learnupon.com/sqsso.json'); 
+            form.setAttribute('target', 'luEmbedIframe'); 
+            form.setAttribute('id', 'luEmbedForm');
+
+            // C. Add Parameters (Simulating SQSSO requirements)
+            // 1. forEmbed=true
+            var inputEmbed = document.createElement('input');
+            inputEmbed.type = 'hidden';
+            inputEmbed.name = 'forEmbed';
+            inputEmbed.value = 'true';
+            form.appendChild(inputEmbed);
+
+            // 2. redirect_uri=/enrollments/{{id}}
+            var inputRedirect = document.createElement('input');
+            inputRedirect.type = 'hidden';
+            inputRedirect.name = 'redirect_uri';
+            inputRedirect.value = `/enrollments/${enrollmentId}`;
+            form.appendChild(inputRedirect);
+
+            // 3. Email (Simulation)
+            var inputEmail = document.createElement('input');
+            inputEmail.type = 'hidden';
+            inputEmail.name = 'Email';
+            inputEmail.value = 'learner@branchingminds.com';
+            form.appendChild(inputEmail);
+
+            // Append form to the hidden div
+            formDiv.appendChild(form);
+
+            // D. Create the iFrame
+            var iframe = document.createElement('iframe');
+            // Configuration as per docs: "allow camera *; microphone *"
+            iframe.setAttribute('style', 'width:100%; height:100%; border:none; min-height: 800px;');
+            iframe.setAttribute('scrolling', 'yes');
+            iframe.setAttribute('allowFullScreen', 'true');
+            iframe.setAttribute('name', 'luEmbedIframe');
+            iframe.setAttribute('allow', 'camera *; microphone *');
+            
+            // For the DEMO visualization only:
+            // Since we don't have a real SSOToken, the POST above would fail.
+            // We will inject a visual placeholder into the iframe instead of submitting the form.
+            // IN PRODUCTION: You would call form.submit() here.
+            
+            playerContainer.appendChild(iframe);
+            
+            // --- DEMO VISUALIZATION ONLY ---
+            var doc = iframe.contentWindow.document;
+            doc.open();
+            doc.write(`
+                <body style="background:#111; color:white; font-family:sans-serif; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0;">
+                    <div style="text-align:center;">
+                        <h2 style="color:#2F5BEA;">LearnUpon Anywhere Player</h2>
+                        <p>Loading Enrollment ID: <strong>${enrollmentId}</strong></p>
+                        <div style="background:#333; padding:20px; border-radius:8px; margin-top:20px; text-align:left; font-family:monospace; font-size:12px; color:#ddd;">
+                            <strong>POST Request Parameters:</strong><br>
+                            forEmbed: true<br>
+                            redirect_uri: /enrollments/${enrollmentId}<br>
+                            Email: learner@branchingminds.com<br>
+                            <span style="color:#888;">(SSOToken would be generated by backend)</span>
+                        </div>
+                        <div style="margin-top:30px; border: 2px solid #555; width: 60px; height: 60px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-left:auto; margin-right:auto;">
+                            ▶
+                        </div>
+                    </div>
+                </body>
+            `);
+            doc.close();
+            // --- END DEMO VISUALIZATION ---
+        }
+
+        // 5. NAVIGATION LOGIC
         function showGrid() {
             detailView.classList.add('hidden');
             gridView.classList.remove('hidden');
             window.scrollTo(0, 0);
+            // Clear player to stop any media
+            playerContainer.innerHTML = '<div class="player-placeholder"><h3>Select a course to load the player</h3></div>';
         }
 
-        if(backBtn) backBtn.addEventListener('click', showGrid);
-        if(navCoursesBtn) navCoursesBtn.addEventListener('click', showGrid);
+        backBtn.addEventListener('click', showGrid);
+        navCoursesBtn.addEventListener('click', showGrid);
 
-        // Run immediately
+        // Init
         renderGrid();
     });
     </script>

@@ -13,7 +13,6 @@
         /* --- Variables & Reset --- */
         :root {
             --primary-blue: #2F5BEA;
-            --primary-hover: #1e40af;
             --secondary-yellow: #F4B400;
             --text-dark: #111827;
             --text-grey: #6B7280;
@@ -36,7 +35,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .hidden { display: none !important; }
 
-        /* Navbar & Branding */
+        /* Navbar */
         .navbar { background: var(--white); box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .nav-links { display: flex; gap: 30px; list-style: none; }
@@ -69,36 +68,22 @@
         #detail-title { font-size: 2.5rem; margin: 10px 0; font-family: var(--font-heading); }
         .meta-row { display: flex; gap: 20px; color: var(--text-grey); margin-bottom: 30px; }
 
-        /* THE PLAYER CONTAINER */
+        /* PLAYER CONTAINER */
         #main-player-container {
             width: 100%;
-            min-height: 600px;
+            height: 700px; /* Matched to your iframe height */
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: var(--radius);
             position: relative;
             margin-top: 30px;
-            overflow: hidden; /* Ensure rounded corners contain the iframe */
+            overflow: hidden;
         }
 
-        iframe[name="luEmbedIframe"] {
-            width: 100%;
-            height: 600px; /* Fixed height for consistency */
-            border: none;
-            display: block;
-        }
-
-        /* Mock Placeholder if iframe doesn't load real content */
-        .player-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 600px;
-            padding: 40px;
-            text-align: center;
-            color: #64748b;
-            background: #f1f5f9;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .detail-layout { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -154,16 +139,11 @@
                     <div style="margin-top: 40px;">
                         <h3>Course Player</h3>
                         <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
-                            Powered by <strong>LearnUpon Anywhere</strong>. (Note: This is a simulation of the embedded experience.)
+                            Powered by <strong>LearnUpon Anywhere</strong>.
                         </p>
                         
                         <div id="main-player-container">
-                            <div class="player-placeholder">
-                                <h3>Select a course to load the player</h3>
                             </div>
-                        </div>
-
-                        <div id="luEmbedFormDiv" style="display: none;"></div>
                     </div>
                 </div>
 
@@ -184,7 +164,7 @@
         // 1. DATA
         const courses = [
             {
-                id: 101,
+                id: 4645933, // YOUR REAL COURSE ID
                 title: "MTSS Foundations: Tier 1 Best Practices",
                 category: "Core Methodology",
                 desc: "Learn the essential framework of Multi-Tiered System of Supports and how to apply Tier 1 interventions effectively.",
@@ -216,7 +196,6 @@
         const backBtn = document.getElementById('back-btn');
         const navCoursesBtn = document.getElementById('nav-courses-btn');
         const playerContainer = document.getElementById('main-player-container');
-        const formDiv = document.getElementById('luEmbedFormDiv');
 
         // 3. RENDER GRID
         function renderGrid() {
@@ -245,59 +224,36 @@
 
         // 4. LAUNCH COURSE
         function launchCourse(course) {
+            // Update Text
             document.getElementById('detail-title').textContent = course.title;
             document.getElementById('detail-category').textContent = course.category;
             document.getElementById('detail-desc').textContent = course.desc;
             document.getElementById('detail-duration').textContent = course.duration;
             document.getElementById('detail-image').src = course.image;
 
+            // Switch Views
             gridView.classList.add('hidden');
             detailView.classList.remove('hidden');
             window.scrollTo(0, 0);
 
-            buildLearnUponIframe(course.id);
+            // Inject the REAL IFrame
+            injectRealIframe();
         }
 
-        function buildLearnUponIframe(enrollmentId) {
-            playerContainer.innerHTML = '';
-            formDiv.innerHTML = '';
-
-            var iframe = document.createElement('iframe');
-            iframe.setAttribute('style', 'width:100%; height:600px; border:none;');
-            iframe.setAttribute('scrolling', 'yes');
-            iframe.setAttribute('allowFullScreen', 'true');
-            iframe.setAttribute('name', 'luEmbedIframe');
-            iframe.setAttribute('allow', 'camera *; microphone *');
+        function injectRealIframe() {
+            playerContainer.innerHTML = ''; // Clear existing
+            
+            // NOTE: Using the direct embed link you provided.
+            // If the user is not logged into LearnUpon in this browser, 
+            // the iframe will likely show a Login screen (which is correct behavior).
+            const iframe = document.createElement('iframe');
+            iframe.src = "https://nikhilsandbox.learnupon.com/embed/courses/4645933";
+            iframe.width = "100%";
+            iframe.height = "700";
+            iframe.frameBorder = "0";
+            iframe.setAttribute('allow', 'camera *; microphone *; fullscreen');
             
             playerContainer.appendChild(iframe);
-            
-            // --- UPDATED VISUALIZATION ---
-            var doc = iframe.contentWindow.document;
-            doc.open();
-            doc.write(`
-                <body style="margin:0; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background: url('https://placehold.co/1200x800/1a1a2e/ffffff?text=Course+Video+Placeholder') no-repeat center center; background-size:cover; font-family:'Open Sans', sans-serif; position:relative;">
-                    <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);"></div>
-
-                    <div style="position:relative; z-index:2; text-align:center; color:white;">
-                        <h2 style="font-family:'Poppins', sans-serif; font-weight:600; margin-bottom:20px; letter-spacing:1px;">
-                            <span style="color:#2F5BEA;">LearnUpon</span> Anywhere Player
-                        </h2>
-                        <div style="display:inline-flex; align-items:center; justify-content:center; width:80px; height:80px; background:rgba(255,255,255,0.2); border-radius:50%; cursor:pointer; transition:all 0.3s ease; backdrop-filter:blur(5px); border: 2px solid rgba(255,255,255,0.6);">
-                            <span style="font-size:32px; color:white; margin-left:5px;">▶</span>
-                        </div>
-                        <p style="margin-top:20px; font-size:1.1rem; font-weight:600;">Click to Start Enrollment #${enrollmentId}</p>
-                    </div>
-
-                    <div style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); z-index:2; background:rgba(0,0,0,0.7); padding:10px 20px; border-radius:5px; color:#ccc; font-size:0.8rem; text-align:left; max-width:90%;">
-                        <strong style="color:white;">Simulation Details (POST Request):</strong><br>
-                        <span style="font-family:monospace;">
-                            redirect_uri: /enrollments/${enrollmentId} | forEmbed: true | Email: learner@branchingminds.com
-                        </span>
-                    </div>
-                </body>
-            `);
-            doc.close();
-            // --- END VISUALIZATION ---
         }
 
         // 5. NAVIGATION
@@ -305,12 +261,13 @@
             detailView.classList.add('hidden');
             gridView.classList.remove('hidden');
             window.scrollTo(0, 0);
-            playerContainer.innerHTML = '<div class="player-placeholder"><h3>Select a course to load the player</h3></div>';
+            playerContainer.innerHTML = ''; // Clear player to stop video/audio
         }
 
         backBtn.addEventListener('click', showGrid);
         navCoursesBtn.addEventListener('click', showGrid);
 
+        // Run
         renderGrid();
     });
     </script>

@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- Variables & Reset --- */
@@ -15,7 +15,7 @@
             --primary-blue: #2F5BEA;
             --secondary-yellow: #F4B400;
             --text-dark: #111827;
-            --text-grey: #6B7280;
+            --text-grey: #4B5563;
             --bg-light: #F9FAFB;
             --white: #ffffff;
             --font-heading: 'Poppins', sans-serif;
@@ -28,62 +28,116 @@
         body {
             font-family: var(--font-body);
             color: var(--text-dark);
-            background-color: var(--bg-light);
+            background-color: var(--white);
             line-height: 1.6;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .hidden { display: none !important; }
 
+        /* Buttons */
+        .btn { padding: 10px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; border: 2px solid transparent; text-decoration: none; display: inline-block; transition: 0.3s; }
+        .btn-primary { background: var(--primary-blue); color: var(--white); }
+        .btn-primary:hover { background: #1e40af; }
+        .btn-outline { border-color: var(--primary-blue); color: var(--primary-blue); background: transparent; }
+        .btn-outline:hover { background: #eff6ff; }
+        .btn-text { background: none; border: none; color: var(--text-grey); font-weight: 600; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; }
+
         /* Navbar */
         .navbar { background: var(--white); box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links button { font-weight: 600; color: var(--text-dark); background: none; border: none; font-family: inherit; cursor: pointer; }
+        .nav-links button { font-weight: 600; color: var(--text-dark); background: none; border: none; font-family: inherit; cursor: pointer; font-size: 0.95rem; }
+        .nav-links button:hover { color: var(--primary-blue); }
         .nav-links button.active-link { color: var(--primary-blue); }
         .nav-cta { display: flex; gap: 10px; }
+
+        /* --- SECTIONS --- */
         
-        .btn { padding: 10px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; border: 2px solid transparent; text-decoration: none;}
-        .btn-primary { background: var(--primary-blue); color: var(--white); }
-        .btn-outline { border-color: var(--primary-blue); color: var(--primary-blue); background: transparent; }
-        .btn-text { background: none; border: none; color: var(--text-grey); font-weight: 600; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; }
-
         /* Hero */
-        .hero-section { background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 100%); padding: 80px 0; text-align: center; border-bottom: 1px solid #e5e7eb; }
-        .hero-section h1 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 15px; font-family: var(--font-heading); }
+        .hero-section { 
+            background: linear-gradient(180deg, #F0F5FF 0%, #FFFFFF 100%); 
+            padding: 100px 0 80px; 
+            text-align: center; 
+        }
+        .hero-section h1 { font-size: 3rem; color: #1e3a8a; margin-bottom: 20px; font-family: var(--font-heading); font-weight: 700; line-height: 1.2; }
+        .hero-section p { font-size: 1.25rem; color: var(--text-grey); max-width: 700px; margin: 0 auto 30px; }
 
-        /* Grid */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-top: 40px; }
-        .course-card { background: var(--white); border-radius: var(--radius); box-shadow: 0 1px 2px rgba(0,0,0,0.05); overflow: hidden; cursor: pointer; border: 1px solid #e5e7eb; transition: transform 0.2s; }
-        .course-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); }
-        .card-img { height: 160px; background: #ddd; overflow: hidden; }
+        /* Logos / Trust */
+        .trust-section { padding: 40px 0; background: var(--white); border-bottom: 1px solid #f3f4f6; }
+        .trust-header { text-align: center; font-size: 0.85rem; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .logo-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; opacity: 0.6; filter: grayscale(100%); }
+        .logo-placeholder { font-weight: 700; font-family: var(--font-heading); font-size: 1.2rem; color: #6B7280; }
+
+        /* Features / Platform */
+        .feature-section { padding: 80px 0; background: #fff; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .feature-content h2 { font-size: 2.2rem; margin-bottom: 20px; color: #1e3a8a; }
+        .feature-content p { font-size: 1.1rem; color: var(--text-grey); margin-bottom: 30px; }
+        .feature-list { list-style: none; }
+        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .check-icon { color: var(--secondary-yellow); font-weight: bold; font-size: 1.2rem; }
+        
+        .laptop-mockup {
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Impact Stats */
+        .impact-section { background: #1e3a8a; color: white; padding: 60px 0; text-align: center; }
+        .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; font-family: var(--font-heading); color: var(--secondary-yellow); }
+        .stat-label { font-size: 1rem; opacity: 0.9; }
+
+        /* Course Grid */
+        .course-section { padding: 80px 0; background: var(--bg-light); }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; color: #1e3a8a; margin-bottom: 10px; }
+        
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .course-card { background: var(--white); border-radius: var(--radius); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); overflow: hidden; cursor: pointer; border: 1px solid #e5e7eb; transition: transform 0.2s; display: flex; flex-direction: column; }
+        .course-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .card-img { height: 160px; background: #e5e7eb; overflow: hidden; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card-category { font-size: 0.75rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .card-title { font-size: 1.1rem; margin-bottom: 10px; font-family: var(--font-heading); font-weight: 600; }
-        .card-footer { border-top: 1px solid #f3f4f6; padding-top: 15px; margin-top: 15px; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-grey); }
+        .card-body { padding: 24px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-category { font-size: 0.75rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px; }
+        .card-title { font-size: 1.15rem; margin-bottom: 10px; font-family: var(--font-heading); font-weight: 600; line-height: 1.4; }
+        .card-desc { font-size: 0.9rem; color: var(--text-grey); margin-bottom: 20px; flex-grow: 1; }
+        .card-footer { border-top: 1px solid #f3f4f6; padding-top: 15px; margin-top: auto; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-grey); align-items: center; }
+        .start-link { color: var(--primary-blue); font-weight: 700; }
 
-        /* Detail View & Player */
+        /* Detail View (Hidden by default) */
         .detail-layout { display: grid; grid-template-columns: 3fr 1fr; gap: 40px; margin-top: 20px; }
-        #detail-title { font-size: 2.5rem; margin: 10px 0; font-family: var(--font-heading); }
-        .meta-row { display: flex; gap: 20px; color: var(--text-grey); margin-bottom: 30px; }
-
-        /* PLAYER CONTAINER */
+        #detail-title { font-size: 2.5rem; margin: 10px 0; font-family: var(--font-heading); color: #1e3a8a; }
+        
         #main-player-container {
             width: 100%;
-            height: 700px; /* Matched to your iframe height */
+            height: 700px;
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: var(--radius);
             position: relative;
             margin-top: 30px;
             overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsive */
+        /* Footer */
+        footer { background: #111827; color: #9CA3AF; padding: 60px 0; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a:hover { color: white; }
+
         @media (max-width: 768px) {
             .nav-links, .nav-cta { display: none; }
-            .detail-layout { grid-template-columns: 1fr; }
+            .feature-grid, .detail-layout, .footer-grid, .impact-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2rem; }
+            .logo-row { gap: 20px; }
         }
     </style>
 </head>
@@ -91,13 +145,14 @@
 
     <nav class="navbar" style="height: auto; min-height: 80px; padding: 15px 0;">
         <div class="container nav-container">
-            <a href="#" class="brand-logo">
+            <a href="#" class="brand-logo" onclick="location.reload()">
                 <img src="branching%20minds%20logo.png" alt="Branching Minds" style="height: 110px; width: auto;">
             </a>
             <ul class="nav-links">
                 <li><button>Platform</button></li>
                 <li><button>Solutions</button></li>
-                <li><button id="nav-courses-btn" class="active-link">Courses</button></li>
+                <li><button>Success Stories</button></li>
+                <li><button id="nav-courses-btn" class="active-link">Professional Learning</button></li>
             </ul>
             <div class="nav-cta">
                 <a href="#" class="btn btn-outline">Log In</a>
@@ -107,20 +162,80 @@
     </nav>
 
     <main>
-        <header class="hero-section">
-            <div class="container">
-                <h1>Professional Learning & MTSS Certification</h1>
-                <p>Deepen your expertise with our curated curriculum. Powered by industry-leading research.</p>
-            </div>
-        </header>
+        
+        <div id="view-home">
+            
+            <header class="hero-section">
+                <div class="container">
+                    <h1>Connect data to action<br>with Branching Minds</h1>
+                    <p>The only MTSS platform that brings together data, instruction, and intervention to support every learner.</p>
+                    <div style="margin-top: 30px;">
+                        <a href="#course-section" class="btn btn-primary" style="padding: 15px 30px; font-size: 1.1rem;">Explore Certification Courses</a>
+                    </div>
+                </div>
+            </header>
 
-        <section id="view-course-grid" class="container" style="padding: 60px 20px;">
-            <h2 style="text-align:center; font-family: var(--font-heading);">Available Courses</h2>
-            <div id="course-grid" class="grid-container"></div>
-        </section>
+            <section class="trust-section">
+                <div class="container">
+                    <div class="trust-header">Trusted by Districts Nationwide</div>
+                    <div class="logo-row">
+                        <span class="logo-placeholder">Chicago Public Schools</span>
+                        <span class="logo-placeholder">Beaumont ISD</span>
+                        <span class="logo-placeholder">Duneland Schools</span>
+                        <span class="logo-placeholder">Bryan ISD</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="feature-section">
+                <div class="container feature-grid">
+                    <div class="feature-content">
+                        <h2>A holistic approach to MTSS</h2>
+                        <p>We provide a system-level view of your district's health, ensuring equitable support for all students across academics, behavior, and SEL.</p>
+                        <ul class="feature-list">
+                            <li><span class="check-icon">✓</span> Streamlined Intervention Planning</li>
+                            <li><span class="check-icon">✓</span> Progress Monitoring & Data Viz</li>
+                            <li><span class="check-icon">✓</span> CASEL-aligned SEL Support</li>
+                            <li><span class="check-icon">✓</span> Embedded Professional Learning</li>
+                        </ul>
+                    </div>
+                    <div class="laptop-mockup">
+                        <img src="https://placehold.co/600x350/ffffff/e2e8f0?text=Branching+Minds+Platform+Dashboard" alt="Platform Dashboard" style="width: 100%; border-radius: 4px; border: 1px solid #e5e7eb;">
+                    </div>
+                </div>
+            </section>
+
+            <section class="impact-section">
+                <div class="container impact-grid">
+                    <div>
+                        <div class="stat-number">1.5M+</div>
+                        <div class="stat-label">Students Supported</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Partner Districts</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Retention Rate</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="course-section" class="course-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Professional Learning & Certification</h2>
+                        <p>Empower your team with our curated curriculum, powered by industry-leading research.</p>
+                    </div>
+                    <div id="course-grid" class="grid-container">
+                        </div>
+                </div>
+            </section>
+        </div>
 
         <section id="view-course-detail" class="container hidden" style="padding: 60px 20px;">
-            <button id="back-btn" class="btn-text">← Back to Courses</button>
+            <button id="back-btn" class="btn-text">← Back to Home</button>
             
             <div class="detail-layout">
                 <div class="detail-content">
@@ -128,7 +243,7 @@
                     <h1 id="detail-title">Course Title</h1>
                     <div class="meta-row">
                         <span id="detail-duration">Duration</span>
-                        <span>🎓 Self-Paced</span>
+                        <span>🎓 Self-Paced Certification</span>
                     </div>
 
                     <div id="description-area">
@@ -151,12 +266,70 @@
                     <img id="detail-image" src="" alt="Course Cover" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
                     <div style="background: #fff; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
                         <h4>Instructor</h4>
-                        <div><strong>Dr. Sarah Miller</strong><br><small>MTSS Specialist</small></div>
+                        <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px;">
+                            <div style="width: 40px; height: 40px; background: #cbd5e1; border-radius: 50%;"></div>
+                            <div>
+                                <strong>Dr. Sarah Miller</strong><br>
+                                <small style="color: #64748b;">Director of Learning</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; background: #F0F5FF; padding: 20px; border-radius: 8px; border: 1px solid #BFDBFE;">
+                        <h4 style="color: #1e3a8a; font-size: 0.95rem;">Certification Includes:</h4>
+                        <ul style="margin-top: 10px; padding-left: 20px; font-size: 0.9rem; color: #4b5563;">
+                            <li>3.5 Hours of Video</li>
+                            <li>Downloadable Resources</li>
+                            <li>Certificate of Completion</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="branching%20minds%20logo.png" alt="Logo" style="height: 60px; filter: brightness(0) invert(1); opacity: 0.7; margin-bottom: 20px;">
+                    <p>Branching Minds is the leading MTSS platform for K-12 school districts.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">MTSS Management</a></li>
+                        <li><a href="#">Intervention Library</a></li>
+                        <li><a href="#">Assessments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #374151; padding-top: 20px; display: flex; justify-content: space-between;">
+                <p>&copy; 2024 Branching Minds. All rights reserved.</p>
+                <div style="display: flex; gap: 15px;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -164,10 +337,10 @@
         // 1. DATA
         const courses = [
             {
-                id: 4645933, // YOUR REAL COURSE ID
+                id: 4645933, // Real ID
                 title: "MTSS Foundations: Tier 1 Best Practices",
                 category: "Core Methodology",
-                desc: "Learn the essential framework of Multi-Tiered System of Supports and how to apply Tier 1 interventions effectively.",
+                desc: "Learn the essential framework of Multi-Tiered System of Supports and how to apply Tier 1 interventions effectively in the classroom setting.",
                 duration: "2h 30m",
                 image: "https://placehold.co/600x400/2F5BEA/ffffff?text=MTSS+Foundations"
             },
@@ -175,7 +348,7 @@
                 id: 102,
                 title: "Data-Based Individualization (DBI)",
                 category: "Advanced",
-                desc: "A deep dive into using data to individualize instruction for students with intensive needs.",
+                desc: "A deep dive into using data to individualize instruction for students with intensive needs. Master the 5 steps of DBI.",
                 duration: "3h 15m",
                 image: "https://placehold.co/600x400/F4B400/ffffff?text=DBI+Deep+Dive"
             },
@@ -183,16 +356,24 @@
                 id: 103,
                 title: "Social-Emotional Learning in the Classroom",
                 category: "Behavior",
-                desc: "Strategies for integrating SEL into daily academic instruction to improve student outcomes.",
+                desc: "Strategies for integrating SEL into daily academic instruction to improve student outcomes and classroom climate.",
                 duration: "1h 45m",
                 image: "https://placehold.co/600x400/111827/ffffff?text=SEL+Strategies"
+            },
+            {
+                id: 104,
+                title: "Equity in Action",
+                category: "Leadership",
+                desc: "Analyzing school data for bias and implementing culturally responsive teaching practices across the district.",
+                duration: "4h 00m",
+                image: "https://placehold.co/600x400/2F5BEA/ffffff?text=Equity+Focus"
             }
         ];
 
         // 2. DOM ELEMENTS
         const gridContainer = document.getElementById('course-grid');
-        const gridView = document.getElementById('view-course-grid');
-        const detailView = document.getElementById('view-course-detail');
+        const viewHome = document.getElementById('view-home');
+        const viewDetail = document.getElementById('view-course-detail');
         const backBtn = document.getElementById('back-btn');
         const navCoursesBtn = document.getElementById('nav-courses-btn');
         const playerContainer = document.getElementById('main-player-container');
@@ -212,10 +393,11 @@
                     <div class="card-body">
                         <span class="card-category">${course.category}</span>
                         <h3 class="card-title">${course.title}</h3>
-                        <p class="card-footer">
-                            <span>${course.duration}</span>
-                            <span style="color: var(--primary-blue); font-weight: 700;">Start Learning &rarr;</span>
-                        </p>
+                        <p class="card-desc">${course.desc}</p>
+                        <div class="card-footer">
+                            <span>⏱ ${course.duration}</span>
+                            <span class="start-link">Start Learning &rarr;</span>
+                        </div>
                     </div>
                 `;
                 gridContainer.appendChild(card);
@@ -228,12 +410,12 @@
             document.getElementById('detail-title').textContent = course.title;
             document.getElementById('detail-category').textContent = course.category;
             document.getElementById('detail-desc').textContent = course.desc;
-            document.getElementById('detail-duration').textContent = course.duration;
+            document.getElementById('detail-duration').textContent = `Duration: ${course.duration}`;
             document.getElementById('detail-image').src = course.image;
 
-            // Switch Views
-            gridView.classList.add('hidden');
-            detailView.classList.remove('hidden');
+            // Switch Views: Hide entire Home Wrapper, Show Detail
+            viewHome.classList.add('hidden');
+            viewDetail.classList.remove('hidden');
             window.scrollTo(0, 0);
 
             // Inject the REAL IFrame
@@ -241,11 +423,8 @@
         }
 
         function injectRealIframe() {
-            playerContainer.innerHTML = ''; // Clear existing
+            playerContainer.innerHTML = ''; 
             
-            // NOTE: Using the direct embed link you provided.
-            // If the user is not logged into LearnUpon in this browser, 
-            // the iframe will likely show a Login screen (which is correct behavior).
             const iframe = document.createElement('iframe');
             iframe.src = "https://nikhilsandbox.learnupon.com/embed/courses/4645933";
             iframe.width = "100%";
@@ -257,15 +436,15 @@
         }
 
         // 5. NAVIGATION
-        function showGrid() {
-            detailView.classList.add('hidden');
-            gridView.classList.remove('hidden');
+        function showHome() {
+            viewDetail.classList.add('hidden');
+            viewHome.classList.remove('hidden');
             window.scrollTo(0, 0);
-            playerContainer.innerHTML = ''; // Clear player to stop video/audio
+            playerContainer.innerHTML = ''; // Stop player
         }
 
-        backBtn.addEventListener('click', showGrid);
-        navCoursesBtn.addEventListener('click', showGrid);
+        backBtn.addEventListener('click', showHome);
+        navCoursesBtn.addEventListener('click', showHome);
 
         // Run
         renderGrid();
